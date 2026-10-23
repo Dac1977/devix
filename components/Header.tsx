@@ -21,8 +21,8 @@ export default function Header() {
           <Image
             src="/logo.png"
             alt="Devix — Software Development"
-            width={1024}
-            height={245}
+            width={400}
+            height={346}
             priority
             className="h-8 w-auto"
           />
