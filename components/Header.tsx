@@ -30,7 +30,10 @@ export default function Header() {
         <ul className="hidden items-center gap-8 text-sm font-medium text-zinc-600 md:flex">
           {links.map((l) => (
             <li key={l.href}>
-              <a href={l.href} className="transition-colors hover:text-zinc-950">
+              <a
+                href={l.href}
+                className="transition-colors hover:text-cyan-700"
+              >
                 {l.label}
               </a>
             </li>

@@ -2,27 +2,67 @@ import Image from "next/image";
 import Header from "@/components/Header";
 import ContactForm from "@/components/ContactForm";
 
+const serviceAccents = {
+  cyan: "bg-cyan-100 text-cyan-700",
+  indigo: "bg-indigo-100 text-indigo-700",
+  violet: "bg-violet-100 text-violet-700",
+  emerald: "bg-emerald-100 text-emerald-700",
+} as const;
+
+const serviceIcons = {
+  code: (
+    <>
+      <path d="m16 18 6-6-6-6" />
+      <path d="m8 6-6 6 6 6" />
+    </>
+  ),
+  globe: (
+    <>
+      <circle cx="12" cy="12" r="10" />
+      <path d="M2 12h20" />
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+    </>
+  ),
+  mobile: (
+    <>
+      <rect x="7" y="2" width="10" height="20" rx="2" />
+      <path d="M12 18h.01" />
+    </>
+  ),
+  wrench: (
+    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+  ),
+} as const;
+
 const services = [
   {
     title: "Desarrollo a medida",
     description:
       "Software diseñado y construido según las necesidades de tu negocio.",
+    icon: "code",
+    accent: "cyan",
   },
   {
     title: "Aplicaciones web",
     description:
       "Sitios, portales y sistemas web modernos, rápidos y escalables.",
+    icon: "globe",
+    accent: "indigo",
   },
   {
     title: "Aplicaciones móviles",
     description: "Apps para iOS y Android, nativas o multiplataforma.",
+    icon: "mobile",
+    accent: "violet",
   },
   {
     title: "Consultoría y soporte",
     description:
       "Acompañamiento técnico, mantenimiento y evolución de tus productos.",
+    icon: "wrench",
+    accent: "emerald",
   },
-];
+] as const;
 
 const projects = [
   {
@@ -30,18 +70,21 @@ const projects = [
     description:
       "Plataforma web y app móvil de autogestión para los prestadores de Incluir Salud, con validación de prestaciones por geolocalización.",
     logo: "/projects/incluir.png",
+    tint: "bg-amber-50",
   },
   {
     name: "QRPass",
     description:
       "Control de acceso inteligente mediante códigos QR, con plataforma web y tótem para barreras.",
     logo: "/projects/qrpass.png",
+    tint: "bg-blue-50",
   },
   {
     name: "Combos QR",
     description:
       "Gestión y distribución de combos con saldo mediante vouchers QR escaneables.",
     logo: "/projects/comboqr.png",
+    tint: "bg-sky-50",
   },
 ];
 
@@ -57,7 +100,15 @@ export default function Home() {
       >
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(6,182,212,0.12),transparent_60%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(6,182,212,0.22),transparent_60%)]"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-32 right-[-10%] h-96 w-96 rounded-full bg-indigo-200/40 blur-3xl"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -bottom-32 left-[-10%] h-96 w-96 rounded-full bg-cyan-200/50 blur-3xl"
         />
         <div className="relative flex flex-col items-center gap-10">
           <Image
@@ -69,16 +120,18 @@ export default function Home() {
             className="h-auto w-[min(80vw,430px)]"
           />
           <p className="max-w-xl text-lg leading-8 text-zinc-600 sm:text-xl">
-            Somos una empresa de desarrollo de software de Mendoza, Argentina.
+            Somos una empresa de desarrollo de software de{" "}
+            <span className="font-medium text-cyan-700">Mendoza, Argentina</span>
+            .
           </p>
           <div className="flex flex-col items-center gap-6 sm:flex-row">
             <a
               href="#contacto"
-              className="rounded-full bg-zinc-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-zinc-700"
+              className="rounded-full bg-gradient-to-r from-cyan-600 to-blue-700 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-cyan-600/25 transition-transform hover:scale-105"
             >
               Contactanos
             </a>
-            <span className="rounded-full border border-zinc-200 px-4 py-1.5 text-sm text-zinc-500">
+            <span className="rounded-full border border-zinc-200 bg-white/60 px-4 py-1.5 text-sm text-zinc-500">
               Sitio en construcción
             </span>
           </div>
@@ -88,17 +141,24 @@ export default function Home() {
       {/* Quiénes somos */}
       <section
         id="nosotros"
-        className="scroll-mt-16 border-t border-zinc-100 px-6 py-24"
+        className="relative scroll-mt-16 overflow-hidden bg-[#0d2036] px-6 py-24"
       >
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(6,182,212,0.15),transparent_55%)]"
+        />
+        <div className="relative mx-auto max-w-3xl text-center">
+          <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
             Quiénes somos
           </h2>
-          <p className="mt-6 text-lg leading-8 text-zinc-600">
-            Devix es una empresa de desarrollo de software con base en Mendoza,
-            Argentina. Trabajamos junto a empresas y emprendedores para
-            transformar ideas en productos digitales, con foco en la calidad, la
-            comunicación y los resultados.
+          <p className="mt-6 text-lg leading-8 text-slate-300">
+            Devix es una empresa de desarrollo de software con base en{" "}
+            <span className="font-medium text-cyan-300">
+              Mendoza, Argentina
+            </span>
+            . Trabajamos junto a empresas y emprendedores para transformar ideas
+            en productos digitales, con foco en la calidad, la comunicación y
+            los resultados.
           </p>
         </div>
       </section>
@@ -106,7 +166,7 @@ export default function Home() {
       {/* Servicios */}
       <section
         id="servicios"
-        className="scroll-mt-16 border-t border-zinc-100 bg-zinc-50 px-6 py-24"
+        className="scroll-mt-16 bg-gradient-to-b from-cyan-50/70 to-white px-6 py-24"
       >
         <div className="mx-auto max-w-6xl">
           <div className="text-center">
@@ -121,8 +181,23 @@ export default function Home() {
             {services.map((s) => (
               <div
                 key={s.title}
-                className="rounded-2xl border border-zinc-200 bg-white p-6"
+                className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
               >
+                <div
+                  className={`mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl ${serviceAccents[s.accent]}`}
+                >
+                  <svg
+                    className="h-5.5 w-5.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    {serviceIcons[s.icon]}
+                  </svg>
+                </div>
                 <h3 className="text-lg font-semibold text-zinc-900">
                   {s.title}
                 </h3>
@@ -136,10 +211,7 @@ export default function Home() {
       </section>
 
       {/* Proyectos */}
-      <section
-        id="proyectos"
-        className="scroll-mt-16 border-t border-zinc-100 px-6 py-24"
-      >
+      <section id="proyectos" className="scroll-mt-16 px-6 py-24">
         <div className="mx-auto max-w-6xl">
           <div className="text-center">
             <h2 className="text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
@@ -153,9 +225,11 @@ export default function Home() {
             {projects.map((p) => (
               <div
                 key={p.name}
-                className="overflow-hidden rounded-2xl border border-zinc-200 bg-white transition-shadow hover:shadow-md"
+                className="overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm transition-shadow hover:shadow-lg"
               >
-                <div className="flex h-48 items-center justify-center bg-zinc-50 p-8">
+                <div
+                  className={`flex h-48 items-center justify-center p-8 ${p.tint}`}
+                >
                   <Image
                     src={p.logo}
                     alt={`Logo de ${p.name}`}
@@ -181,7 +255,7 @@ export default function Home() {
       {/* Contacto */}
       <section
         id="contacto"
-        className="scroll-mt-16 border-t border-zinc-100 bg-zinc-50 px-6 py-24"
+        className="scroll-mt-16 bg-gradient-to-b from-white to-cyan-50/80 px-6 py-24"
       >
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
@@ -197,7 +271,7 @@ export default function Home() {
             También podés escribirnos a{" "}
             <a
               href="mailto:contacto@devix.com.ar"
-              className="font-medium text-zinc-700 underline-offset-4 hover:underline"
+              className="font-medium text-cyan-700 underline-offset-4 hover:underline"
             >
               contacto@devix.com.ar
             </a>{" "}
@@ -206,7 +280,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="border-t border-zinc-100 px-6 py-8 text-center text-sm text-zinc-400">
+      <footer className="bg-[#0d2036] px-6 py-8 text-center text-sm text-slate-400">
         © 2026 Devix — devix.com.ar — Mendoza, Argentina
       </footer>
     </div>
