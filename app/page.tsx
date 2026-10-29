@@ -124,17 +124,12 @@ export default function Home() {
             <span className="font-medium text-cyan-700">Mendoza, Argentina</span>
             .
           </p>
-          <div className="flex flex-col items-center gap-6 sm:flex-row">
-            <a
-              href="#contacto"
-              className="rounded-full bg-gradient-to-r from-cyan-600 to-blue-700 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-cyan-600/25 transition-transform hover:scale-105"
-            >
-              Contactanos
-            </a>
-            <span className="rounded-full border border-zinc-200 bg-white/60 px-4 py-1.5 text-sm text-zinc-500">
-              Sitio en construcción
-            </span>
-          </div>
+          <a
+            href="#contacto"
+            className="rounded-full bg-gradient-to-r from-cyan-600 to-blue-700 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-cyan-600/25 transition-transform hover:scale-105"
+          >
+            Contactanos
+          </a>
         </div>
       </section>
 
