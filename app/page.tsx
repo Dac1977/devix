@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Header from "@/components/Header";
+import ContactForm from "@/components/ContactForm";
 
 const services = [
   {
@@ -25,16 +26,22 @@ const services = [
 
 const projects = [
   {
-    name: "Proyecto destacado",
-    description: "Descripción breve del proyecto o del cliente.",
+    name: "Incluir Salud — Prestadores",
+    description:
+      "Plataforma web y app móvil de autogestión para los prestadores de Incluir Salud, con validación de prestaciones por geolocalización.",
+    logo: "/projects/incluir.png",
   },
   {
-    name: "Proyecto destacado",
-    description: "Descripción breve del proyecto o del cliente.",
+    name: "QRPass",
+    description:
+      "Control de acceso inteligente mediante códigos QR, con plataforma web y tótem para barreras.",
+    logo: "/projects/qrpass.png",
   },
   {
-    name: "Proyecto destacado",
-    description: "Descripción breve del proyecto o del cliente.",
+    name: "Combos QR",
+    description:
+      "Gestión y distribución de combos con saldo mediante vouchers QR escaneables.",
+    logo: "/projects/comboqr.png",
   },
 ];
 
@@ -143,25 +150,19 @@ export default function Home() {
             </p>
           </div>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {projects.map((p, i) => (
+            {projects.map((p) => (
               <div
-                key={i}
-                className="overflow-hidden rounded-2xl border border-zinc-200 bg-white"
+                key={p.name}
+                className="overflow-hidden rounded-2xl border border-zinc-200 bg-white transition-shadow hover:shadow-md"
               >
-                <div className="flex h-40 items-center justify-center bg-gradient-to-br from-cyan-50 to-zinc-100 text-zinc-300">
-                  <svg
-                    className="h-12 w-12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth={1.5}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <rect x="3" y="3" width="18" height="18" rx="2" />
-                    <circle cx="8.5" cy="8.5" r="1.5" />
-                    <path d="m21 15-5-5L5 21" />
-                  </svg>
+                <div className="flex h-48 items-center justify-center bg-zinc-50 p-8">
+                  <Image
+                    src={p.logo}
+                    alt={`Logo de ${p.name}`}
+                    width={220}
+                    height={220}
+                    className="h-full w-auto object-contain"
+                  />
                 </div>
                 <div className="p-6">
                   <h3 className="text-lg font-semibold text-zinc-900">
@@ -189,13 +190,19 @@ export default function Home() {
           <p className="mt-6 text-lg leading-8 text-zinc-600">
             ¿Tenés una idea o un proyecto en mente? Escribinos y lo charlamos.
           </p>
-          <a
-            href="mailto:hola@devix.com.ar"
-            className="mt-8 inline-block rounded-full bg-zinc-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-zinc-700"
-          >
-            hola@devix.com.ar
-          </a>
-          <p className="mt-6 text-sm text-zinc-500">Mendoza, Argentina</p>
+          <div className="mt-10">
+            <ContactForm />
+          </div>
+          <p className="mt-8 text-sm text-zinc-500">
+            También podés escribirnos a{" "}
+            <a
+              href="mailto:contacto@devix.com.ar"
+              className="font-medium text-zinc-700 underline-offset-4 hover:underline"
+            >
+              contacto@devix.com.ar
+            </a>{" "}
+            — Mendoza, Argentina
+          </p>
         </div>
       </section>
 
